@@ -17,18 +17,33 @@ using UnityEditor;
 
 namespace DSFramework
 {
-    public class TransformLocalPosImprovements
+    public partial class TransformSimplify
     {
         #if UNITY_EDITOR
-        [MenuItem("DSFramework/10.Transform 赋值优化")]
+        [MenuItem("DSFramework/5.Transform API简化",false,5)]
         #endif
-        private static void GenerateUnityPackageName()
+        private static void MenuClicked()
         {
             var transform = new GameObject("transform").transform;
 
             SetLoaclPosX(transform, 5.0f);
             SetLoaclPosY(transform, 5.0f);
             SetLoaclPosZ(transform, 5.0f);
+
+            TransformSimplify.SetLoaclPosX(transform, 5.0f);
+
+            Identity(transform);
+        }
+
+        /// <summary>
+        /// 重置操作
+        /// </summary>
+        /// <param name="transform">Trans.</param>
+        public static void Identity(Transform transform)
+        {
+            transform.localPosition = Vector3.zero;
+            transform.localScale = Vector3.one;
+            transform.localRotation = Quaternion.identity;
         }
 
         public static void SetLoaclPosX(Transform transform,float x)
@@ -75,5 +90,7 @@ namespace DSFramework
             localPos.z = z;
             transform.localPosition = localPos;
         }
+
+
     }
 }

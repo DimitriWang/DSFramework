@@ -20,7 +20,7 @@ namespace DSFramework
     public class ResolutionCheck
     {
 #if UNITY_EDITOR
-        [MenuItem("DSFramework/9.屏幕宽高比判断")]
+        [MenuItem("DSFramework/4.屏幕宽高比判断",false,4)]
 #endif
         static void MenuClicked()
         {

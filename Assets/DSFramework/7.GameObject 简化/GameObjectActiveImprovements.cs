@@ -11,32 +11,31 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
 
 namespace DSFramework
 {
-    public class GameObjectActiveImprovements
+    public partial class GameObjectSimplify
     {
-#if UNITY_EDITOR
-        [MenuItem("DSFramework/13.GameObject 的显示隐藏简化")]
-#endif
-        private static void MenuClicked()
-        {
-            var gameobject = new GameObject();
-
-            Hide(gameobject);
-        }
 
         public static void Show(GameObject gameobj)
         {
             gameobj.SetActive(true);
         }
-
         public static void Hide(GameObject gameobj)
         {
             gameobj.SetActive(false);
+        }
+#if UNITY_EDITOR
+        [MenuItem("DSFramework/7.GameObject 简化",false,7)]
+#endif
+        private static void MenuClicked()
+        {
+            var gameobject = new GameObject();
+            Hide(gameobject);
         }
     }
 }

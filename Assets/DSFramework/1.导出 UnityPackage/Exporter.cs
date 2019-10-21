@@ -12,23 +12,28 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
+using System;
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
 
 namespace DSFramework
 {
-    public class CustomShortCut : MonoBehaviour
+    public class Exporter
     {
+        //获取文件名
+        public static string GeneratePackageName()
+        {
+            return "DSFramework_" + DateTime.Now.ToString("yyyyMMdd_HH");
+        }
 
 #if UNITY_EDITOR
-        [MenuItem("DSFramework/7.自定义快捷键 %e")]
+        [MenuItem("DSFramework/1.导出 UnityPackage %e", false, 1)]
         private static void MenuClicked()
         {
-            PreviousFunction.ExportPackage("Assets/DSFramework", PreviousFunction.GeneratePackageName() + ".unitypackage");
-            PreviousFunction.OpenInFolder(Path.Combine(Application.dataPath, "../"));
+            EditorUtil.ExportPackage("Assets/DSFramework", GeneratePackageName() + ".unitypackage");
+            EditorUtil.OpenInFolder(Path.Combine(Application.dataPath, "../"));
         }
 #endif
-
     }
 }
